@@ -1,5 +1,8 @@
 import numpy as np
-
+from numpy import random
+import torch
+from torch import nn
+import matplotlib.pyplot as plt
 
 class LinearRegression:
 
