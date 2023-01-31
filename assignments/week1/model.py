@@ -1,7 +1,4 @@
 import numpy as np
-! pip install torch
-import torch
-from torch import nn
 
 
 class LinearRegression:
