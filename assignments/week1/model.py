@@ -39,10 +39,10 @@ class GradientDescentLinearRegression(LinearRegression):
         import torch
         from torch import nn
 
-        X = torch.tensor(X)
-        y = torch.tensor(y)
+        X = torch.tensor(X, dtype=torch.float64)
+        y = torch.tensor(y, dtype=torch.float64)
 
-        model = nn.Sequential(nn.Linear(in_features=8, out_features=1).double())
+        model = nn.Sequential(nn.Linear(in_features=X.shape[1], out_features=1).double())
 
         criterion = nn.MSELoss()
 
@@ -53,7 +53,7 @@ class GradientDescentLinearRegression(LinearRegression):
         for i in range(0, epochs):
 
             preds = model(X)
-            preds = preds.squeeze(1)
+            preds = preds.squeeze()
             loss = criterion(preds, y)
 
             if i % 100 == 0:
@@ -82,6 +82,6 @@ class GradientDescentLinearRegression(LinearRegression):
         """
         # raise NotImplementedError()
 
-        X = torch.tensor(X)
+        X = torch.tensor(X, dtype= torch.float64)
         preds = X @ self.w.T
         return preds.numpy()
