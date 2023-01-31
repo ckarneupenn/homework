@@ -1,12 +1,14 @@
 {
     "assignment_name": "Assignment 1",
     "contributors": [
-        {"name": "Chaithanya Sai Karne", "pennkey": "ckarne"},
-        {"name": "Richard Ren", "pennkey": "renrich"},
+        {
+            "name": "Chaithanya Sai Karne", 
+            "pennkey": "ckarne"
+        }
     ],
     "sources": [
         "https://example.com",
         "Conversations with TA (include TA's name)",
-        "LLM (include information about the LLM and how it was used)",
-    ],
+        "LLM (include information about the LLM and how it was used)"
+    ]
 }
