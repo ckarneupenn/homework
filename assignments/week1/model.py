@@ -67,6 +67,7 @@ class GradientDescentLinearRegression(LinearRegression):
         """
         # raise NotImplementedError()
 
+        np.random.seed(42)
         self.w = np.random.randn(X.shape[1], 1)  # initial weights
         y = y.reshape(y.shape[0], 1)
         losses = []
