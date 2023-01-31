@@ -74,7 +74,7 @@ class GradientDescentLinearRegression(LinearRegression):
         for i in range(0, epochs):
 
             preds = X @ self.w
-            loss = np.sum((preds - y) ** 2)
+            loss = (np.sum((preds - y) ** 2)) / X.shape[0]
             losses.append(loss)
             if i % 100 == 0:
                 print(f"Loss in epoch {i} is {loss}")
