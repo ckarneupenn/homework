@@ -15,7 +15,7 @@ class LinearRegression:
         self.w = np.zeros((2, 2))
         self.b = np.zeros((2, 2))
 
-    def fit(self, X, y) -> None:
+    def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         """
         Fit the Linear Regression model for the given input.
         Arguments:
