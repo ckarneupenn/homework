@@ -31,7 +31,7 @@ class LinearRegression:
                 "Closed form solution not possible here as determinant of X.T@X is not zero"
             )
 
-    def predict(self, X) -> np.ndarray:
+    def predict(self, X: np.ndarray) -> np.ndarray:
         """
         Predict the output for the given input.
 
