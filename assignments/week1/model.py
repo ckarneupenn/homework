@@ -2,7 +2,6 @@ import numpy as np
 from numpy import random
 import torch
 from torch import nn
-import matplotlib.pyplot as plt
 
 
 class LinearRegression:
@@ -69,13 +68,6 @@ class GradientDescentLinearRegression(LinearRegression):
 
         self.w = model[0].weight.data.squeeze(0)
         print("The final trained weights are: ", self.w)
-
-        fig, ax = plt.subplots()
-        ax = plt.plot(range(epochs), losses)
-        plt.xlabel("Epochs")
-        plt.ylabel("Loss")
-        plt.title("Loss Curve")
-        plt.show
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
