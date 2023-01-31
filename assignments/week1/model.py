@@ -42,7 +42,9 @@ class GradientDescentLinearRegression(LinearRegression):
         X = torch.tensor(X, dtype=torch.float64)
         y = torch.tensor(y, dtype=torch.float64)
 
-        model = nn.Sequential(nn.Linear(in_features=X.shape[1], out_features=1).double())
+        model = nn.Sequential(
+            nn.Linear(in_features=X.shape[1], out_features=1).double()
+        )
 
         criterion = nn.MSELoss()
 
@@ -82,6 +84,6 @@ class GradientDescentLinearRegression(LinearRegression):
         """
         # raise NotImplementedError()
 
-        X = torch.tensor(X, dtype= torch.float64)
+        X = torch.tensor(X, dtype=torch.float64)
         preds = X @ self.w.T
         return preds.numpy()
