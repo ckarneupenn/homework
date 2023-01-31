@@ -8,7 +8,8 @@ class LinearRegression:
 
     def __init__(self):
         # raise NotImplementedError()
-        pass
+        self.w = np.zeros((2, 2))
+        self.b = np.zeros((2, 2))
 
     def fit(self, X, y):
         # raise NotImplementedError()
