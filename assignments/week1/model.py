@@ -1,5 +1,5 @@
 import numpy as np
-from numpy import random
+! pip install torch
 import torch
 from torch import nn
 
