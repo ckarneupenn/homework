@@ -2,12 +2,10 @@ import numpy as np
 
 
 class LinearRegression:
-
+    
     """
     A linear regression model that uses closed form solution to fit the model.
     """
-
-    
     w: np.ndarray
     b: float
 
