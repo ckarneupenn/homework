@@ -34,40 +34,20 @@ class GradientDescentLinearRegression(LinearRegression):
     def fit(self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000):
         # raise NotImplementedError()
 
-        import torch
-        from torch import nn
-
-        X = torch.tensor(X, dtype=torch.float64)
-        y = torch.tensor(y, dtype=torch.float64)
-
-        model = nn.Sequential(
-            nn.Linear(in_features=X.shape[1], out_features=1).double()
-        )
-
-        criterion = nn.MSELoss()
-
-        optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-
+        self.w = np.random.randn(X.shape[1], 1)  # initial weights
+        y = y.reshape(y.shape[0], 1)
         losses = []
 
         for i in range(0, epochs):
 
-            preds = model(X)
-            preds = preds.squeeze()
-            loss = criterion(preds, y)
-
+            preds = X @ self.w
+            loss = np.sum((preds - y) ** 2)
+            losses.append(loss)
             if i % 100 == 0:
-                print(f"Loss in {i}th epoch is {loss.item()}")
+                print(f"Loss in epoch {i} is {loss}")
 
-            losses.append(loss.item())
-            loss.backward()
-            optimizer.step()
-            optimizer.zero_grad()
-
-        print("Final loss is ", losses[-1])
-
-        self.w = model[0].weight.data.squeeze(0)
-        print("The final trained weights are: ", self.w)
+            gradients = 2 * (X.T.dot(preds - y)) / X.shape[0]
+            self.w = self.w - lr * gradients
 
     def predict(self, X: np.ndarray):
         """
@@ -82,6 +62,5 @@ class GradientDescentLinearRegression(LinearRegression):
         """
         # raise NotImplementedError()
 
-        X = torch.tensor(X, dtype=torch.float64)
-        preds = X @ self.w.T
-        return preds.numpy()
+        preds = X @ self.w
+        return preds
