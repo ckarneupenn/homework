@@ -31,9 +31,7 @@ class GradientDescentLinearRegression(LinearRegression):
     A linear regression model that uses gradient descent to fit the model.
     """
 
-    def fit(
-        self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
-    ) -> None:
+    def fit(self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000):
         # raise NotImplementedError()
 
         import torch
@@ -71,7 +69,7 @@ class GradientDescentLinearRegression(LinearRegression):
         self.w = model[0].weight.data.squeeze(0)
         print("The final trained weights are: ", self.w)
 
-    def predict(self, X: np.ndarray) -> np.ndarray:
+    def predict(self, X: np.ndarray):
         """
         Predict the output for the given input.
 
