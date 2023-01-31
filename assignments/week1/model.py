@@ -13,7 +13,6 @@ class LinearRegression:
     def __init__(self):
         # raise NotImplementedError()
         self.w = np.zeros((2, 2))
-        self.b = np.zeros((2, 2))
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         """
