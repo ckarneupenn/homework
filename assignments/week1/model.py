@@ -3,7 +3,8 @@ from numpy import random
 import torch
 from torch import nn
 import matplotlib.pyplot as plt
-! pip install black
+pip install black
+python -m black --check
 
 class LinearRegression:
 
