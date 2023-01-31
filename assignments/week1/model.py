@@ -32,7 +32,9 @@ class GradientDescentLinearRegression(LinearRegression):
     A linear regression model that uses gradient descent to fit the model.
     """
 
-    def fit(self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000):
+    def fit(
+        self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
+    ) -> None:
         # raise NotImplementedError()
 
         self.w = np.random.randn(X.shape[1], 1)  # initial weights
@@ -50,7 +52,7 @@ class GradientDescentLinearRegression(LinearRegression):
             gradients = 2 * (X.T.dot(preds - y)) / X.shape[0]
             self.w = self.w - lr * gradients
 
-    def predict(self, X: np.ndarray):
+    def predict(self, X: np.ndarray) -> np.ndarray:
         """
         Predict the output for the given input.
 
