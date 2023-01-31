@@ -22,7 +22,7 @@ class LinearRegression:
 
     def predict(self, X):
         # raise NotImplementedError()
-        self.b = np.ones((X.shape[0], ))
+        self.b = np.zeros((X.shape[0], ))
         preds = (X@self.w.T) + self.b
         return preds
 
