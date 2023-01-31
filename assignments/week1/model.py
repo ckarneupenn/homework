@@ -3,6 +3,7 @@ from numpy import random
 import torch
 from torch import nn
 import matplotlib.pyplot as plt
+! pip install black
 
 class LinearRegression:
 
