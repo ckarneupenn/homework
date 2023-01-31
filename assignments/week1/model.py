@@ -3,6 +3,10 @@ import numpy as np
 
 class LinearRegression:
 
+    """
+    A linear regression model that uses closed form solution to fit the model.
+    """
+
     w: np.ndarray
     b: float
 
@@ -53,6 +57,14 @@ class GradientDescentLinearRegression(LinearRegression):
     def fit(
         self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
     ) -> None:
+
+        """
+        Fit the Linear Regression model for the given input.
+        Arguments:
+            X (np.ndarray): The input data.
+        Returns:
+            None.
+        """
         # raise NotImplementedError()
 
         self.w = np.random.randn(X.shape[1], 1)  # initial weights
