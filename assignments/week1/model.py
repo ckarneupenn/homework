@@ -36,6 +36,9 @@ class GradientDescentLinearRegression(LinearRegression):
     ) -> None:
         # raise NotImplementedError()
 
+        import torch
+        from torch import nn
+        
         X = torch.tensor(X)
         y = torch.tensor(y)
 
