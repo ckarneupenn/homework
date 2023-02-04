@@ -24,6 +24,7 @@ class MLP(torch.nn.module):
         """
 
         super(MLP, self).__init__()
+
         self.layers = torch.nn.ModuleList()
 
         for i in range(1, hidden_count + 1):
