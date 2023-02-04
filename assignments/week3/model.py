@@ -53,7 +53,7 @@ class MLP(torch.nn.Module):
 
         initializer(self.out.weight.data)
 
-    def forward(self, x) -> torch.tensor:
+    def forward(self, x: torch.tensor) -> torch.tensor:
         """
         Forward pass of the network.
 
