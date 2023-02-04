@@ -26,7 +26,6 @@ class MLP(torch.nn.Module):
             activation: The activation function to use in the hidden layer.
             initializer: The initializer to use for the weights.
         """
-
         super(MLP, self).__init__()
 
         self.layers = torch.nn.ModuleList()
