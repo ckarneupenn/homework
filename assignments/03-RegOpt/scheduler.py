@@ -22,12 +22,11 @@ class CustomLRScheduler(_LRScheduler):
         self.initial_learning_rate = initial_learning_rate
 
         self.k = 0.00001
-        
-        self.func = lambda x : x * ((np.exp(self.k*self.last_epoch))-0.04)
+
+        self.func = lambda x: x * ((np.exp(self.k * self.last_epoch)) - 0.04)
 
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
 
-        
     def get_lr(self) -> List[float]:
         """
         runs step() on the scheduler
@@ -38,11 +37,11 @@ class CustomLRScheduler(_LRScheduler):
 
         # ... Your Code Here ...
         if self.last_epoch == 0:
-          return [self.initial_learning_rate]
+            return [self.initial_learning_rate]
 
         if self.last_epoch % self.drop_point == 0:
-          self.initial_learning_rate = self.func(self.initial_learning_rate)
-          return [self.initial_learning_rate]
+            self.initial_learning_rate = self.func(self.initial_learning_rate)
+            return [self.initial_learning_rate]
 
         return [self.initial_learning_rate]
         # Here's our dumb baseline implementation:
