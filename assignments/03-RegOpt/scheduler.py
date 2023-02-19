@@ -25,7 +25,7 @@ class CustomLRScheduler(_LRScheduler):
         """
         # ... Your Code Here ...
         self.drop_point = drop_point
-        
+
         self.initial_learning_rate = initial_learning_rate
 
         self.k = 0.00001
