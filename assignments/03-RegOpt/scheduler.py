@@ -4,6 +4,10 @@ from torch.optim.lr_scheduler import _LRScheduler
 
 
 class CustomLRScheduler(_LRScheduler):
+    """
+    Create a new scheduler.
+    """
+
     def __init__(
         self,
         optimizer,
@@ -15,7 +19,9 @@ class CustomLRScheduler(_LRScheduler):
         Create a new scheduler.
         Note to students: You can change the arguments to this constructor,
         if you need to add new parameters.
-
+        The scheduler changes the learning rate every 200 batches using the formula:
+        new lr = old lr * exp(self.k * self.last_epoch) - 0.04
+        where k is a hyperparameter with value 0.00001.
         """
         # ... Your Code Here ...
         self.drop_point = drop_point
