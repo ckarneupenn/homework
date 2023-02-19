@@ -7,12 +7,13 @@ from torchvision.transforms import Compose, Normalize, ToTensor
 
 class CONFIG:
     """
-        Create a new config.
+    Create a new config.
 
-        Note to students: You can change the arguments to this constructor,
-        if you need to add new parameters.
+    Note to students: You can change the arguments to this constructor,
+    if you need to add new parameters.
 
-        """
+    """
+
     batch_size = 64
     num_epochs = 2
     initial_learning_rate = 0.001
@@ -21,15 +22,17 @@ class CONFIG:
     lrs_kwargs = {
         # You can pass arguments to the learning rate scheduler
         # constructor here.
-        'drop':0.9,
-        'drop_point':50,
-        'initial_learning_rate':initial_learning_rate
+        "drop": 0.9,
+        "drop_point": 50,
+        "initial_learning_rate": initial_learning_rate,
     }
 
     optimizer_factory: Callable[
         [nn.Module], torch.optim.Optimizer
     ] = lambda model: torch.optim.Adam(
-        model.parameters(), lr=CONFIG.initial_learning_rate, weight_decay=CONFIG.initial_weight_decay,
+        model.parameters(),
+        lr=CONFIG.initial_learning_rate,
+        weight_decay=CONFIG.initial_weight_decay,
     )
 
     transforms = Compose(
