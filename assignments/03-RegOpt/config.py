@@ -2,7 +2,7 @@ from typing import Callable
 import torch
 import torch.optim
 import torch.nn as nn
-from torchvision.transforms import Compose, Normalize, ToTensor
+from torchvision.transforms import Compose, ToTensor
 
 
 class CONFIG:
@@ -15,15 +15,14 @@ class CONFIG:
     """
 
     batch_size = 64
-    num_epochs = 2
-    initial_learning_rate = 0.001
+    num_epochs = 5
+    initial_learning_rate = 0.002
     initial_weight_decay = 0
 
     lrs_kwargs = {
         # You can pass arguments to the learning rate scheduler
         # constructor here.
-        "drop": 0.9,
-        "drop_point": 50,
+        "drop_point": 200,
         "initial_learning_rate": initial_learning_rate,
     }
 
