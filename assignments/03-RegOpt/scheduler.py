@@ -30,7 +30,7 @@ class CustomLRScheduler(_LRScheduler):
 
         self.k = 0.00001
 
-        self.func = lambda x: x * ((np.exp(self.k * self.last_epoch)) - 0.04)
+        self.func = lambda x: x * ((np.exp(self.k * self.last_epoch)) - 0.08)
 
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
 
@@ -45,6 +45,9 @@ class CustomLRScheduler(_LRScheduler):
         # ... Your Code Here ...
         if self.last_epoch == 0:
             return [self.initial_learning_rate]
+
+        if self.last_epoch == 2400:
+            self.initial_learning_rate = self.initial_learning_rate * 1.5
 
         if self.last_epoch % self.drop_point == 0:
             self.initial_learning_rate = self.func(self.initial_learning_rate)
