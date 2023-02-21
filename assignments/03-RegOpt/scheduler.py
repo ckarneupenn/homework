@@ -13,24 +13,21 @@ class CustomLRScheduler(_LRScheduler):
         optimizer,
         last_epoch=-1,
         drop_point=0.1,
-        initial_learning_rate=0.1,
+        max_lr=0.005,
+        base=0.001,
     ):
         """
         Create a new scheduler.
         Note to students: You can change the arguments to this constructor,
         if you need to add new parameters.
-        The scheduler changes the learning rate every 200 batches using the formula:
-        new lr = old lr * exp(self.k * self.last_epoch) - 0.04
-        where k is a hyperparameter with value 0.00001.
+        The scheduler changes the learning rate every 200 batches using the cyclical learning
+        rate scheduler but I modified it:
         """
         # ... Your Code Here ...
         self.drop_point = drop_point
-
-        self.initial_learning_rate = initial_learning_rate
-
-        self.k = 0.00001
-
-        self.func = lambda x: x * ((np.exp(self.k * self.last_epoch)) - 0.08)
+        self.max_lr = max_lr
+        self.base = base
+        self.dummy = 0
 
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
 
@@ -44,15 +41,33 @@ class CustomLRScheduler(_LRScheduler):
 
         # ... Your Code Here ...
         if self.last_epoch == 0:
-            return [self.initial_learning_rate]
+            return [self.base_lrs[0]]  # return 0.001
 
-        if self.last_epoch == 2400:
-            self.initial_learning_rate = self.initial_learning_rate * 1.5
+        for i in range(0, 10000):
 
-        if self.last_epoch % self.drop_point == 0:
-            self.initial_learning_rate = self.func(self.initial_learning_rate)
-            return [self.initial_learning_rate]
+            if self.last_epoch == 2400:
+                self.dummy = 2
 
-        return [self.initial_learning_rate]
+            if self.dummy == 2:
+                self.base = self.base - ((self.max_lr - self.base_lrs[0]) / 10000)
+                return [self.base]
+
+            if self.dummy == 0:
+
+                self.base = self.base + (
+                    (self.max_lr - self.base_lrs[0]) / self.drop_point
+                )
+                if int(self.last_epoch) % self.drop_point == 0:
+                    self.dummy = 1
+                return [self.base]
+
+            if self.dummy == 1:
+
+                self.base = self.base - (
+                    (self.max_lr - self.base_lrs[0]) / self.drop_point
+                )
+                if int(self.last_epoch) % self.drop_point == 0:
+                    self.dummy = 0
+                return [self.base]
         # Here's our dumb baseline implementation:
         # return [i for i in self.base_lrs]
