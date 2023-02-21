@@ -40,6 +40,7 @@ class CustomLRScheduler(_LRScheduler):
         # this function (because it is called internally by Torch)
 
         # ... Your Code Here ...
+
         if self.last_epoch == 0:
             return [self.base_lrs[0]]
 
