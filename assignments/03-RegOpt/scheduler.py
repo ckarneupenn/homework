@@ -42,34 +42,26 @@ class CustomLRScheduler(_LRScheduler):
         # ... Your Code Here ...
 
         if self.last_epoch == 0:
-            return [self.base_lrs[0]]
+            return [self.base_lrs[0]]  # return 0.001
 
-        for i in range(0, 10000):
+        if self.last_epoch == 2400:
+            self.dummy = 2
 
-            if self.last_epoch == 2400:
-                self.dummy = 2
+        if self.dummy == 2:
+            self.base = self.base - ((self.max_lr - self.base_lrs[0]) / 10000)
+            return [self.base]
 
-            if self.dummy == 2:
-                self.base = self.base - ((self.max_lr - self.base_lrs[0]) / 10000)
-                return [self.base]
+        if self.dummy == 0:
+            self.base = self.base + ((self.max_lr - self.base_lrs[0]) / self.drop_point)
+            if int(self.last_epoch) % self.drop_point == 0:
+                self.dummy = 1
+            return [self.base]
 
-            if self.dummy == 0:
-
-                self.base = self.base + (
-                    (self.max_lr - self.base_lrs[0]) / self.drop_point
-                )
-                if int(self.last_epoch) % self.drop_point == 0:
-                    self.dummy = 1
-                return [self.base]
-
-            if self.dummy == 1:
-
-                self.base = self.base - (
-                    (self.max_lr - self.base_lrs[0]) / self.drop_point
-                )
-                if int(self.last_epoch) % self.drop_point == 0:
-                    self.dummy = 0
-                return [self.base]
+        if self.dummy == 1:
+            self.base = self.base - ((self.max_lr - self.base_lrs[0]) / self.drop_point)
+            if int(self.last_epoch) % self.drop_point == 0:
+                self.dummy = 0
+            return [self.base]
 
         # Here's our dumb baseline implementation:
         # return [i for i in self.base_lrs]
