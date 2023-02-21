@@ -41,7 +41,7 @@ class CustomLRScheduler(_LRScheduler):
         # ... Your Code Here ...
 
         if self.last_epoch == 0:
-            return [self.base_lrs[0]]  # return 0.001
+            return [self.base_lrs[0]]
 
         if self.last_epoch == 1200:
             self.dummy = 2
