@@ -1,5 +1,4 @@
 from typing import List
-import numpy as np
 from torch.optim.lr_scheduler import _LRScheduler
 
 
@@ -44,7 +43,7 @@ class CustomLRScheduler(_LRScheduler):
         if self.last_epoch == 0:
             return [self.base_lrs[0]]  # return 0.001
 
-        if self.last_epoch == 2400:
+        if self.last_epoch == 1200:
             self.dummy = 2
 
         if self.dummy == 2:
