@@ -41,7 +41,7 @@ class CustomLRScheduler(_LRScheduler):
 
         # ... Your Code Here ...
         if self.last_epoch == 0:
-            return [self.base_lrs[0]]  # return 0.001
+            return [self.base_lrs[0]]
 
         for i in range(0, 10000):
 
@@ -69,5 +69,6 @@ class CustomLRScheduler(_LRScheduler):
                 if int(self.last_epoch) % self.drop_point == 0:
                     self.dummy = 0
                 return [self.base]
+            
         # Here's our dumb baseline implementation:
         # return [i for i in self.base_lrs]
