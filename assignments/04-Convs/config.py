@@ -11,10 +11,10 @@ class CONFIG:
     """
 
     batch_size = 128
-    num_epochs = 4
+    num_epochs = 1
 
     optimizer_factory: Callable[
         [nn.Module], torch.optim.Optimizer
-    ] = lambda model: torch.optim.Adam(model.parameters(), lr=1e-3)
+    ] = lambda model: torch.optim.Adam(model.parameters(), lr=0.0015)
 
     transforms = Compose([ToTensor()])
