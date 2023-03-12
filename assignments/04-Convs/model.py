@@ -3,12 +3,13 @@ import torch
 
 class Model(torch.nn.Module):
     """
-    Model class
+    This is the Model class that has the CNN model
     """
 
     def __init__(self, num_channels: int, num_classes: int) -> None:
 
         super(Model, self).__init__()
+
         self.conv1 = torch.nn.Conv2d(
             in_channels=num_channels, out_channels=32, kernel_size=3, stride=1
         )
