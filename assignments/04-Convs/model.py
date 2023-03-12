@@ -8,6 +8,9 @@ class Model(torch.nn.Module):
 
     def __init__(self, num_channels: int, num_classes: int) -> None:
 
+        """
+        Create all CNN layers
+        """
         super(Model, self).__init__()
 
         self.conv1 = torch.nn.Conv2d(
@@ -21,6 +24,9 @@ class Model(torch.nn.Module):
         self.fc2 = torch.nn.Linear(in_features=128, out_features=num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """
+        Pass x through all layers
+        """
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.activation(x)
