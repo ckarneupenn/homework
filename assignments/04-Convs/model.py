@@ -3,7 +3,7 @@ import torch
 
 class Model(torch.nn.Module):
     """
-    This is the Model class that has the CNN model
+    This is the Model class that has the CNN
     """
 
     def __init__(self, num_channels: int, num_classes: int) -> None:
