@@ -7,7 +7,7 @@ from torchvision.transforms import Compose, ToTensor
 
 class CONFIG:
     """
-    CONFIG Class containing all hyperparameters
+    CONFIG Class containing all required hyperparameters
     """
 
     batch_size = 128
